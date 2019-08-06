@@ -24,13 +24,29 @@ const useStyles = makeStyles({
     textAlign: 'center',
   },
   link: {
-    fontSize: 30,
-    textAlign: 'center',
+    display: 'inline-block',
+    width: 115,
+    height: 25,
+    backgroundColor: '#4caf50',
     textDecoration: 'none',
-    border: '1px solid red',
-    backgroundColor: 'grey',
-    width: 'auto',
+    padding: 10,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 16,
+    cursor: 'pointer',
   },
+  linkDiv: {
+    textAlign: 'center',
+  },
+
+  // link: {
+  //   fontSize: 30,
+  //   textAlign: 'center',
+  //   textDecoration: 'none',
+  //   border: '1px solid red',
+  //   backgroundColor: 'grey',
+  //   width: 'auto',
+  // },
 });
 
 export default function MediaCard() {
@@ -43,8 +59,9 @@ export default function MediaCard() {
           <h1>Welcome to Quiz</h1>
         </CardMedia>
         <CardContent>
-          <div className={classes.link}>
+          <div className={classes.linkDiv}>
             <Link
+              className={classes.link}
               to={{
                 pathname: './start-quiz',
               }}

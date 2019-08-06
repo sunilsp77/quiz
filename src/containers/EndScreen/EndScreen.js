@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Card from '../../components/Card/Card';
 import Table from '../../components/UI/Table/Table';
 import * as actionTypes from '../../store/actions';
+import classes from './EndScreen.module.css';
 
 class EndScreen extends Component {
   playAgain = () => {
@@ -36,8 +37,6 @@ class EndScreen extends Component {
         value: option,
       });
     }
-    console.log(rowArray);
-
     return (
       <div>
         <Table quizQuestions={rowArray} />
@@ -49,7 +48,11 @@ class EndScreen extends Component {
         >
           Play Again!
         </Link>{' '} */}
-        <button onClick={this.playAgain}>Play Again!</button>
+        <div className={classes.BtnDiv}>
+          <button className={classes.Btn} onClick={this.playAgain}>
+            Play Again!
+          </button>
+        </div>
       </div>
     );
   }

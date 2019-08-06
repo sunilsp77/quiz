@@ -10,6 +10,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'lightgrey',
     textAlign: 'center',
   },
+  p: {
+    fontSize: 25,
+    fontWeight: 'bold',
+  },
 }));
 
 export default function PaperSheet(props) {
@@ -21,8 +25,12 @@ export default function PaperSheet(props) {
         <Typography variant="h5" component="h3">
           {props.h1}
         </Typography>
-        <Typography component="p">{props.p1}</Typography>
-        <Typography component="p">{props.p2}</Typography>
+        <Typography className={classes.p} component="p">
+          {props.p1}/10
+        </Typography>
+        <Typography className={classes.p} component="p">
+          {props.p2}
+        </Typography>
       </Paper>
     </div>
   );
