@@ -22,54 +22,17 @@ class Questions extends Component {
             incorrect_answer: q.incorrect_answers.toString(),
           };
         });
-        console.log(updatedQuestions);
-        // this.setState({
-        //   questions: updatedQuestions,
-        // });
         this.props.set_questions(updatedQuestions);
       })
       .catch(error => {
-        console.log(error);
-        // this.setState({ error: true });
         this.props.fetch_questions_failed();
       });
   }
 
-  //   validateAnswer = event => {
-  //     console.log(event.target);
-  //     if (
-  //       this.props.questions[this.state.currentQ].correct_answer ===
-  //       event.target.value
-  //     ) {
-  //       console.log(event.target);
-  //       this.setState((state, props) => {
-  //         return {
-  //           score: this.state.score + 1,
-  //           result: 'You answer is Correct',
-  //           nextQ: false,
-  //         };
-  //       });
-  //     } else {
-  //       this.setState((state, props) => {
-  //         return {
-  //           result: 'You answer is Wrong',
-  //           nextQ: false,
-  //         };
-  //       });
-  //     }
-  //   };
-  //   navigateToNext = () => {
-  //     this.setState((state, props) => {
-  //       return {
-  //         result: '',
-  //         nextQ: true,
-  //         currentQ: this.state.currentQ + 1,
-  //       };
-  //     });
-  //   };
   seeResults = () => {
     this.props.history.push('/end');
   };
+
   render() {
     let result = null;
     if (this.props.currentResponse === 'Y') {

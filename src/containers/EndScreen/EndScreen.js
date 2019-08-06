@@ -11,23 +11,6 @@ class EndScreen extends Component {
     this.props.history.push('/start-quiz');
   };
   render() {
-    // const allQuestions = this.props.questions.map(q => (
-    //   <div>
-    //     <h2>q.question</h2>
-    //   </div>
-    // ));
-    console.log(this.props.questions);
-    let q = this.props.questions.map((q, index) => {
-      return (
-        <Card
-          key={index}
-          question={q.question}
-          correctAnswer={q.correct_answer}
-          incorrectAnswer={q.incorrect_answer}
-        />
-      );
-    });
-
     let rowArray = [];
     for (let i = 0; i < this.props.questions.length; i++) {
       let questn = this.props.questions[i].question;
@@ -41,13 +24,6 @@ class EndScreen extends Component {
       <div>
         <Table quizQuestions={rowArray} />
         <Card h1="Your Score is:" p1={this.props.score} />
-        {/* <Link
-          to={{
-            pathname: './start-quiz',
-          }}
-        >
-          Play Again!
-        </Link>{' '} */}
         <div className={classes.BtnDiv}>
           <button className={classes.Btn} onClick={this.playAgain}>
             Play Again!
