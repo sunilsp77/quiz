@@ -4,6 +4,7 @@ import axios from '../../axios';
 import Question from '../../components/Question/Question';
 import * as actionTypes from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import classes from './Questions.module.css';
 
 class Questions extends Component {
   componentDidMount() {
@@ -70,29 +71,11 @@ class Questions extends Component {
     this.props.history.push('/end');
   };
   render() {
-    let q = this.props.error ? (
-      <p style={{ textAlign: 'center' }}>Something went wrong!</p>
-    ) : (
-      <Spinner />
-    );
-
     let result = null;
     if (this.props.currentResponse === 'Y') {
       result = <p>Your answer is Correct</p>;
     } else if (this.props.currentResponse === 'N') {
       result = <p>Your answer is Incorrect</p>;
-    }
-    if (Array.isArray(this.props.questions) && this.props.questions.length) {
-      console.log(this.props.questions);
-      let currentQuestion = this.props.questions[this.props.currentQ];
-      q = (
-        <Question
-          question={currentQuestion.question}
-          rightAnswer={currentQuestion.correct_answer}
-          wrongAnswer={currentQuestion.incorrect_answer}
-          checkAnswer={this.props.validate_selected_option}
-        />
-      );
     }
     let btn = (
       <button
@@ -103,17 +86,32 @@ class Questions extends Component {
       </button>
     );
     if (this.props.endOfQuiz) {
-      console.log('END OF QUIZ');
-      console.log(this.props.endOfQuiz);
       btn = <button onClick={this.seeResults}>See your Score!</button>;
     }
-    return (
-      <div>
-        {q}
-        {result}
-        {btn}
-      </div>
+    let questionCard = this.props.error ? (
+      <p style={{ textAlign: 'center' }}>Something went wrong!</p>
+    ) : (
+      <Spinner />
     );
+    if (Array.isArray(this.props.questions) && this.props.questions.length) {
+      console.log(this.props.questions);
+      let currentQuestion = this.props.questions[this.props.currentQ];
+      questionCard = (
+        <div className={classes.QuestionCard}>
+          <Question
+            qnumber={this.props.currentQ}
+            question={currentQuestion.question}
+            rightAnswer={currentQuestion.correct_answer}
+            wrongAnswer={currentQuestion.incorrect_answer}
+            checkAnswer={this.props.validate_selected_option}
+          />
+          {result}
+          {btn}
+        </div>
+      );
+    }
+
+    return questionCard;
   }
 }
 

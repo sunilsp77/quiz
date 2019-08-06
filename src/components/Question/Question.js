@@ -1,4 +1,5 @@
 import React from 'react';
+import classes from './Question.module.css';
 
 const question = props => {
   let randomIndex = Math.floor(Math.random() * 2);
@@ -10,24 +11,29 @@ const question = props => {
   }
   return (
     <article>
-      <h1>{props.question}</h1>
+      <h1 className={classes.header}>
+        Q.{props.qnumber + 1}&nbsp;&nbsp;{props.question}
+      </h1>
       {/* <button onClick={props.checkAnswer}>{firstOption}</button>
       <button onClick={props.checkAnswer}>{secondOption}</button> */}
       <input
+        className={classes.RadioButton}
         type="radio"
         name="radio1"
         value={firstOption}
         onChange={props.checkAnswer}
       />
-      {firstOption}
+      <label className={classes.label}>{firstOption}</label>
+
       <br />
       <input
+        className={classes.RadioButton}
         type="radio"
         name="radio1"
         value={secondOption}
         onChange={props.checkAnswer}
       />
-      {secondOption}
+      <label className={classes.label}>{secondOption}</label>
       <br />
     </article>
   );

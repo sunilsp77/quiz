@@ -1,0 +1,7 @@
+.QuestionCard {
+  width: 80%;
+  height: auto;
+  margin: auto;
+  margin-top: 10%;
+  border: 1px solid lightgray;
+}
