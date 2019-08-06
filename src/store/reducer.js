@@ -64,6 +64,8 @@ const reducer = (state = initialState, action) => {
         radioBtn: action.event.target,
         response: state.response.concat(result),
       };
+    case actionTypes.PLAY_QUIZ_AGAIN:
+      return initialState;
     default:
       return state;
   }

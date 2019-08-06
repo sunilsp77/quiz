@@ -4,17 +4,19 @@ import axios from '../../axios';
 import Question from '../../components/Question/Question';
 import * as actionTypes from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import EndScreen from '../EndScreen/EndScreen';
 
 class Questions extends Component {
   componentDidMount() {
+    let parser = new DOMParser();
     axios
       .get('')
       .then(response => {
         const questions = response.data.results;
         const updatedQuestions = questions.map(q => {
+          let questn = parser.parseFromString(q.question, 'text/html').body
+            .textContent;
           return {
-            question: q.question,
+            question: questn,
             correct_answer: q.correct_answer,
             incorrect_answer: q.incorrect_answers.toString(),
           };
@@ -110,7 +112,6 @@ class Questions extends Component {
         {q}
         {result}
         {btn}
-        <EndScreen />
       </div>
     );
   }

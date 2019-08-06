@@ -1,16 +1,20 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 import './App.css';
 import Questions from './containers/Questions/Questions';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
+import EndScreen from './containers/EndScreen/EndScreen';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Route path="/" exact component={WelcomeScreen} />
-        <Route path="/start-quiz" exact component={Questions} />
+        <Switch>
+          <Route path="/end" exact component={EndScreen} />
+          <Route path="/start-quiz" exact component={Questions} />
+          <Route path="/" exact component={WelcomeScreen} />
+        </Switch>
       </div>
     );
   }

@@ -18,21 +18,24 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-function createData(name, calories) {
-  return { name, calories };
+function createData(question, value) {
+  return { question, value };
 }
 
-const rows = [
-  createData('Frozen yoghurt', 159),
-  createData('Ice cream sandwich', 237),
-  createData('Eclair', 262),
-  createData('Cupcake', 305),
-  createData('Gingerbread', 356),
-];
+// const rows = [
+//   createData('Frozen yoghurt', 159),
+//   createData('Ice cream sandwich', 237),
+//   createData('Eclair', 262),
+//   createData('Cupcake', 305),
+//   createData('Gingerbread', 356),
+// ];
 
-export default function SimpleTable() {
+export default function SimpleTable(props) {
   const classes = useStyles();
 
+  const rows = props.quizQuestions.map(quizQuestion =>
+    createData(quizQuestion.question, quizQuestion.value),
+  );
   return (
     <Paper className={classes.root}>
       <Table className={classes.table}>
@@ -44,11 +47,11 @@ export default function SimpleTable() {
         </TableHead>
         <TableBody>
           {rows.map(row => (
-            <TableRow key={row.name}>
+            <TableRow key={row.question}>
               <TableCell component="th" scope="row">
-                {row.name}
+                {row.question}
               </TableCell>
-              <TableCell align="right">{row.calories}</TableCell>
+              <TableCell align="right">{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>

@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(3, 2),
     border: '1px solid black',
     backgroundColor: 'lightgrey',
+    textAlign: 'center',
   },
 }));
 
@@ -18,14 +19,10 @@ export default function PaperSheet(props) {
     <div>
       <Paper className={classes.root}>
         <Typography variant="h5" component="h3">
-          {props.question}
+          {props.h1}
         </Typography>
-        <Typography component="p">
-          Correct Answer: {props.correctAnswer}
-        </Typography>
-        <Typography component="p">
-          Incorrect Answer: {props.incorrectAnswer}
-        </Typography>
+        <Typography component="p">{props.p1}</Typography>
+        <Typography component="p">{props.p2}</Typography>
       </Paper>
     </div>
   );
