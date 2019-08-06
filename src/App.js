@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import './App.css';
 import Questions from './containers/Questions/Questions';
 import WelcomeScreen from './components/WelcomeScreen/WelcomeScreen';
 import EndScreen from './containers/EndScreen/EndScreen';

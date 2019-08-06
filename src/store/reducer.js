@@ -49,10 +49,7 @@ const reducer = (state = initialState, action) => {
       } else {
         result = 'N';
       }
-      console.log(action.event.target);
       if (state.currentQ + 1 === state.questions.length) {
-        console.log('END OF QUIZ11');
-
         return {
           ...state,
           score: updatedScore,
