@@ -4,6 +4,7 @@ import axios from '../../axios';
 import Question from '../../components/Question/Question';
 import * as actionTypes from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import EndScreen from '../EndScreen/EndScreen';
 
 class Questions extends Component {
   componentDidMount() {
@@ -63,6 +64,9 @@ class Questions extends Component {
   //       };
   //     });
   //   };
+  seeResults = () => {
+    this.props.history.push('/end');
+  };
   render() {
     let q = this.props.error ? (
       <p style={{ textAlign: 'center' }}>Something went wrong!</p>
@@ -88,16 +92,25 @@ class Questions extends Component {
         />
       );
     }
+    let btn = (
+      <button
+        disabled={this.props.disableNextQ}
+        onClick={this.props.navigate_next_question}
+      >
+        Next
+      </button>
+    );
+    if (this.props.endOfQuiz) {
+      console.log('END OF QUIZ');
+      console.log(this.props.endOfQuiz);
+      btn = <button onClick={this.seeResults}>See your Score!</button>;
+    }
     return (
       <div>
         {q}
         {result}
-        <button
-          disabled={this.props.disableNextQ}
-          onClick={this.props.navigate_next_question}
-        >
-          Next
-        </button>
+        {btn}
+        <EndScreen />
       </div>
     );
   }
@@ -110,6 +123,7 @@ const mapStateToProps = state => {
     disableNextQ: state.disableNextQ,
     currentQ: state.currentQ,
     currentResponse: state.response[state.currentQ],
+    endOfQuiz: state.endOfQuiz,
   };
 };
 

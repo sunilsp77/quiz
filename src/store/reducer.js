@@ -4,9 +4,11 @@ const initialState = {
   questions: [],
   error: false,
   disableNextQ: true,
+  endOfQuiz: false,
   score: 0,
   currentQ: 0,
   response: [],
+  radioBtn: null,
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,10 +25,12 @@ const reducer = (state = initialState, action) => {
         error: true,
       };
     case actionTypes.NAVIGATE_NEXT_QUESTION:
+      state.radioBtn.checked = false;
       return {
         ...state,
         disableNextQ: true,
         currentQ: state.currentQ + 1,
+        radioBtn: null,
       };
     case actionTypes.VALIDATE_SELECTED_OPTION:
       let isCorrect =
@@ -40,11 +44,24 @@ const reducer = (state = initialState, action) => {
       } else {
         result = 'N';
       }
-      console.log(updatedScore);
+      console.log(action.event.target);
+      if (state.currentQ + 1 === state.questions.length) {
+        console.log('END OF QUIZ11');
+
+        return {
+          ...state,
+          score: updatedScore,
+          disableNextQ: false,
+          endOfQuiz: true,
+          radioBtn: action.event.target,
+          response: state.response.concat(result),
+        };
+      }
       return {
         ...state,
         score: updatedScore,
         disableNextQ: false,
+        radioBtn: action.event.target,
         response: state.response.concat(result),
       };
     default:
