@@ -14,8 +14,7 @@ const question = props => {
       <h1 className={classes.header}>
         Q.{props.qnumber + 1}&nbsp;&nbsp;{props.question}
       </h1>
-      {/* <button onClick={props.checkAnswer}>{firstOption}</button>
-      <button onClick={props.checkAnswer}>{secondOption}</button> */}
+
       <input
         className={classes.RadioButton}
         type="radio"
@@ -24,8 +23,8 @@ const question = props => {
         onChange={props.checkAnswer}
       />
       <label className={classes.label}>{firstOption}</label>
-
       <br />
+
       <input
         className={classes.RadioButton}
         type="radio"
