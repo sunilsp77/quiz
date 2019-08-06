@@ -17,22 +17,28 @@ const question = props => {
 
       <input
         className={classes.RadioButton}
+        id="10"
         type="radio"
         name="radioButtons"
         value={firstOption}
         onChange={props.checkAnswer}
       />
-      <label className={classes.label}>{firstOption}</label>
+      <label for="10" className={classes.label}>
+        {firstOption}
+      </label>
       <br />
 
       <input
         className={classes.RadioButton}
+        id="11"
         type="radio"
         name="radioButtons"
         value={secondOption}
         onChange={props.checkAnswer}
       />
-      <label className={classes.label}>{secondOption}</label>
+      <label for="11" className={classes.label}>
+        {secondOption}
+      </label>
       <br />
     </article>
   );
