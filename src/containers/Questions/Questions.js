@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from '../../axios';
 import Question from '../../components/Question/Question';
 import * as actionTypes from '../../store/actions';
+import EndScreen from '../EndScreen/EndScreen';
 
 class Questions extends Component {
   state = {
@@ -92,6 +93,7 @@ class Questions extends Component {
         <button disabled={this.state.nextQ} onClick={this.navigateToNext}>
           Next
         </button>
+        <EndScreen />
       </div>
     );
   }
