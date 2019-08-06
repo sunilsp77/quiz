@@ -6,9 +6,7 @@ import * as actionTypes from '../../store/actions';
 
 class Questions extends Component {
   state = {
-    // questions: [],
     currentQ: 0,
-    // error: false,
     score: 0,
     result: '',
     nextQ: true,
@@ -73,7 +71,7 @@ class Questions extends Component {
   };
   render() {
     let q = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
-    if (!this.state.error) {
+    if (!this.props.error) {
       q = this.props.questions.map((question, index) => {
         return (
           <Question
@@ -102,6 +100,7 @@ class Questions extends Component {
 const mapStateToProps = state => {
   return {
     questions: state.questions,
+    error: state.error,
   };
 };
 
