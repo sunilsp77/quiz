@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from '../../axios';
 import Question from '../../components/Question/Question';
 import * as actionTypes from '../../store/actions';
-import EndScreen from '../EndScreen/EndScreen';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 class Questions extends Component {
   componentDidMount() {
@@ -64,38 +64,40 @@ class Questions extends Component {
   //     });
   //   };
   render() {
-    let q = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
-    if (!this.props.error) {
-      q = this.props.questions.map((question, index) => {
-        return (
-          <Question
-            key={question.index}
-            question={question.question}
-            rightAnswer={question.correct_answer}
-            wrongAnswer={question.incorrect_answer}
-            checkAnswer={this.props.validate_selected_option}
-          />
-        );
-      });
-    }
-    let index = this.props.currentQ;
+    let q = this.props.error ? (
+      <p style={{ textAlign: 'center' }}>Something went wrong!</p>
+    ) : (
+      <Spinner />
+    );
+
     let result = null;
     if (this.props.currentResponse === 'Y') {
       result = <p>Your answer is Correct</p>;
     } else if (this.props.currentResponse === 'N') {
       result = <p>Your answer is Incorrect</p>;
     }
+    if (Array.isArray(this.props.questions) && this.props.questions.length) {
+      console.log(this.props.questions);
+      let currentQuestion = this.props.questions[this.props.currentQ];
+      q = (
+        <Question
+          question={currentQuestion.question}
+          rightAnswer={currentQuestion.correct_answer}
+          wrongAnswer={currentQuestion.incorrect_answer}
+          checkAnswer={this.props.validate_selected_option}
+        />
+      );
+    }
     return (
       <div>
-        <h2>{q[index]}</h2>
+        {q}
         {result}
         <button
           disabled={this.props.disableNextQ}
-          onClick={this.navigate_next_question}
+          onClick={this.props.navigate_next_question}
         >
           Next
         </button>
-        <EndScreen />
       </div>
     );
   }

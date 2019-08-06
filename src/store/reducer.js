@@ -26,7 +26,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         disableNextQ: true,
-        currentQ: state.currentQ++,
+        currentQ: state.currentQ + 1,
       };
     case actionTypes.VALIDATE_SELECTED_OPTION:
       let isCorrect =
@@ -35,7 +35,7 @@ const reducer = (state = initialState, action) => {
       let updatedScore = state.score;
       let result = '';
       if (isCorrect) {
-        updatedScore++;
+        updatedScore = updatedScore + 1;
         result = 'Y';
       } else {
         result = 'N';
