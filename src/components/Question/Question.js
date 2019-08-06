@@ -18,7 +18,7 @@ const question = props => {
       <input
         className={classes.RadioButton}
         type="radio"
-        name="radio1"
+        name="radioButtons"
         value={firstOption}
         onChange={props.checkAnswer}
       />
@@ -28,7 +28,7 @@ const question = props => {
       <input
         className={classes.RadioButton}
         type="radio"
-        name="radio1"
+        name="radioButtons"
         value={secondOption}
         onChange={props.checkAnswer}
       />

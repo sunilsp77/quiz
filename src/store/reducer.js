@@ -12,7 +12,7 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  let arr = document.getElementsByName('radio1');
+  let arr = document.getElementsByName('radioButtons');
   switch (action.type) {
     case actionTypes.SET_QUESTIONS:
       return {
