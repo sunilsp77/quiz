@@ -14,6 +14,7 @@ class EndScreen extends Component {
     let q = this.props.questions.map((q, index) => {
       return (
         <Card
+          key={index}
           question={q.question}
           correctAnswer={q.correct_answer}
           incorrectAnswer={q.incorrect_answer}

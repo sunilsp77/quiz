@@ -6,13 +6,6 @@ import * as actionTypes from '../../store/actions';
 import EndScreen from '../EndScreen/EndScreen';
 
 class Questions extends Component {
-  state = {
-    currentQ: 0,
-    score: 0,
-    result: '',
-    nextQ: true,
-  };
-
   componentDidMount() {
     axios
       .get('')
@@ -38,38 +31,38 @@ class Questions extends Component {
       });
   }
 
-  validateAnswer = event => {
-    console.log(event.target);
-    if (
-      this.props.questions[this.state.currentQ].correct_answer ===
-      event.target.value
-    ) {
-      console.log(event.target);
-      this.setState((state, props) => {
-        return {
-          score: this.state.score + 1,
-          result: 'You answer is Correct',
-          nextQ: false,
-        };
-      });
-    } else {
-      this.setState((state, props) => {
-        return {
-          result: 'You answer is Wrong',
-          nextQ: false,
-        };
-      });
-    }
-  };
-  navigateToNext = () => {
-    this.setState((state, props) => {
-      return {
-        result: '',
-        nextQ: true,
-        currentQ: this.state.currentQ + 1,
-      };
-    });
-  };
+  //   validateAnswer = event => {
+  //     console.log(event.target);
+  //     if (
+  //       this.props.questions[this.state.currentQ].correct_answer ===
+  //       event.target.value
+  //     ) {
+  //       console.log(event.target);
+  //       this.setState((state, props) => {
+  //         return {
+  //           score: this.state.score + 1,
+  //           result: 'You answer is Correct',
+  //           nextQ: false,
+  //         };
+  //       });
+  //     } else {
+  //       this.setState((state, props) => {
+  //         return {
+  //           result: 'You answer is Wrong',
+  //           nextQ: false,
+  //         };
+  //       });
+  //     }
+  //   };
+  //   navigateToNext = () => {
+  //     this.setState((state, props) => {
+  //       return {
+  //         result: '',
+  //         nextQ: true,
+  //         currentQ: this.state.currentQ + 1,
+  //       };
+  //     });
+  //   };
   render() {
     let q = <p style={{ textAlign: 'center' }}>Something went wrong!</p>;
     if (!this.props.error) {
@@ -80,17 +73,26 @@ class Questions extends Component {
             question={question.question}
             rightAnswer={question.correct_answer}
             wrongAnswer={question.incorrect_answer}
-            checkAnswer={this.validateAnswer}
+            checkAnswer={this.props.validate_selected_option}
           />
         );
       });
     }
-    let index = this.state.currentQ;
+    let index = this.props.currentQ;
+    let result = null;
+    if (this.props.currentResponse === 'Y') {
+      result = <p>Your answer is Correct</p>;
+    } else if (this.props.currentResponse === 'N') {
+      result = <p>Your answer is Incorrect</p>;
+    }
     return (
       <div>
         <h2>{q[index]}</h2>
-        <p>{this.state.result}</p>
-        <button disabled={this.state.nextQ} onClick={this.navigateToNext}>
+        {result}
+        <button
+          disabled={this.props.disableNextQ}
+          onClick={this.navigate_next_question}
+        >
           Next
         </button>
         <EndScreen />
@@ -103,6 +105,9 @@ const mapStateToProps = state => {
   return {
     questions: state.questions,
     error: state.error,
+    disableNextQ: state.disableNextQ,
+    currentQ: state.currentQ,
+    currentResponse: state.response[state.currentQ],
   };
 };
 
@@ -114,6 +119,10 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: actionTypes.FETCH_QUESTIONS_FAILED,
       }),
+    validate_selected_option: event =>
+      dispatch({ type: actionTypes.VALIDATE_SELECTED_OPTION, event: event }),
+    navigate_next_question: () =>
+      dispatch({ type: actionTypes.NAVIGATE_NEXT_QUESTION }),
   };
 };
 
