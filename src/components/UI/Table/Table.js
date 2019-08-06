@@ -22,14 +22,6 @@ function createData(question, value) {
   return { question, value };
 }
 
-// const rows = [
-//   createData('Frozen yoghurt', 159),
-//   createData('Ice cream sandwich', 237),
-//   createData('Eclair', 262),
-//   createData('Cupcake', 305),
-//   createData('Gingerbread', 356),
-// ];
-
 export default function SimpleTable(props) {
   const classes = useStyles();
 
@@ -42,7 +34,7 @@ export default function SimpleTable(props) {
         <TableHead>
           <TableRow>
             <TableCell>Questions</TableCell>
-            <TableCell align="right">Correct/Incorrect</TableCell>
+            <TableCell align="left">Correct/Incorrect</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -51,7 +43,7 @@ export default function SimpleTable(props) {
               <TableCell component="th" scope="row">
                 {row.question}
               </TableCell>
-              <TableCell align="right">{row.value}</TableCell>
+              <TableCell align="left">{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>
