@@ -5,3 +5,22 @@
   margin-top: 10%;
   border: 1px solid lightgray;
 }
+.BtnDiv {
+  text-align: center;
+}
+.Btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+.Result {
+  font-size: 20px;
+  padding: 1%;
+}

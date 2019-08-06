@@ -73,12 +73,21 @@ class Questions extends Component {
   render() {
     let result = null;
     if (this.props.currentResponse === 'Y') {
-      result = <p>Your answer is Correct</p>;
+      result = (
+        <p className={classes.Result}>
+          Your answer is <span style={{ color: 'green' }}>Correct</span>
+        </p>
+      );
     } else if (this.props.currentResponse === 'N') {
-      result = <p>Your answer is Incorrect</p>;
+      result = (
+        <p className={classes.Result}>
+          Your answer is <span style={{ color: 'red' }}>Incorrect</span>
+        </p>
+      );
     }
     let btn = (
       <button
+        className={classes.Btn}
         disabled={this.props.disableNextQ}
         onClick={this.props.navigate_next_question}
       >
@@ -86,7 +95,11 @@ class Questions extends Component {
       </button>
     );
     if (this.props.endOfQuiz) {
-      btn = <button onClick={this.seeResults}>See your Score!</button>;
+      btn = (
+        <button className={classes.Btn} onClick={this.seeResults}>
+          See your Score!
+        </button>
+      );
     }
     let questionCard = this.props.error ? (
       <p style={{ textAlign: 'center' }}>Something went wrong!</p>
@@ -106,7 +119,7 @@ class Questions extends Component {
             checkAnswer={this.props.validate_selected_option}
           />
           {result}
-          {btn}
+          <div className={classes.BtnDiv}>{btn}</div>
         </div>
       );
     }
