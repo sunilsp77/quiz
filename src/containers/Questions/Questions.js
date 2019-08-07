@@ -6,7 +6,11 @@ import * as actionTypes from '../../store/actions';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Questions.module.css';
 
+// this component displays the Question Screen
+
 class Questions extends Component {
+  // Fetching the questions from the server and
+  //dispatching an action to store them in store
   componentDidMount() {
     let parser = new DOMParser();
     axios
@@ -29,11 +33,13 @@ class Questions extends Component {
       });
   }
 
+  // onClick of seeResults button
   seeResults = () => {
     this.props.history.push('/end');
   };
 
   render() {
+    //to display the result of the selected option
     let result = null;
     if (this.props.currentResponse === 'Y') {
       result = (
@@ -48,6 +54,7 @@ class Questions extends Component {
         </p>
       );
     }
+    // display next button or seeResults button
     let btn = (
       <button
         className={classes.Btn}
@@ -64,6 +71,7 @@ class Questions extends Component {
         </button>
       );
     }
+    // display the question card with a question and two options
     let questionCard = this.props.error ? (
       <p style={{ textAlign: 'center' }}>Something went wrong!</p>
     ) : (

@@ -15,7 +15,7 @@ class App extends Component {
           <h1>Do you Know?</h1>
         </AppBar>
         <Switch>
-          {/* Routes for different paths */}
+          {/* Routes for different screens */}
           <Route path="/end" exact component={EndScreen} />
           <Route path="/start-quiz" exact component={Questions} />
           <Route path="/" exact component={WelcomeScreen} />
