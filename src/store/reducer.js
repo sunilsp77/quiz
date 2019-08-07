@@ -12,7 +12,6 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  let arr = document.getElementsByName('radioButtons');
   switch (action.type) {
     case actionTypes.SET_QUESTIONS:
       return {
@@ -27,8 +26,7 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.NAVIGATE_NEXT_QUESTION:
       state.radioBtn.checked = false;
-      arr[0].disabled = false;
-      arr[1].disabled = false;
+      disableRadioButtons(false);
       return {
         ...state,
         disableNextQ: true,
@@ -36,8 +34,7 @@ const reducer = (state = initialState, action) => {
         radioBtn: null,
       };
     case actionTypes.VALIDATE_SELECTED_OPTION:
-      arr[0].disabled = true;
-      arr[1].disabled = true;
+      disableRadioButtons(true);
       let isCorrect =
         action.event.target.value ===
         state.questions[state.currentQ].correct_answer;
@@ -73,3 +70,9 @@ const reducer = (state = initialState, action) => {
   }
 };
 export default reducer;
+
+function disableRadioButtons(disable) {
+  let radioBtnsList = document.getElementsByName('radioButtons');
+  radioBtnsList[0].disabled = disable;
+  radioBtnsList[1].disabled = disable;
+}

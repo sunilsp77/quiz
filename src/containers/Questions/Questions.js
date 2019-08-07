@@ -70,7 +70,6 @@ class Questions extends Component {
       <Spinner />
     );
     if (Array.isArray(this.props.questions) && this.props.questions.length) {
-      console.log(this.props.questions);
       let currentQuestion = this.props.questions[this.props.currentQ];
       questionCard = (
         <div className={classes.QuestionCard}>
