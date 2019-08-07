@@ -32,7 +32,8 @@ const useStyles = makeStyles({
     padding: 10,
     textAlign: 'center',
     color: 'white',
-    fontSize: 16,
+    fontSize: 24,
+    fontWeight: 'bold',
     cursor: 'pointer',
   },
   linkDiv: {
@@ -47,7 +48,8 @@ export default function MediaCard() {
     <Card className={classes.card}>
       <CardActionArea className={classes.actionArea}>
         <CardMedia className={classes.media}>
-          <h1>Welcome to Quiz</h1>
+          <h1>Welcome to the Quiz</h1>
+          <h2>"Do you Know?"</h2>
         </CardMedia>
         <CardContent>
           <div className={classes.linkDiv}>
