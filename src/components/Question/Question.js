@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Question.module.css';
 
 const question = props => {
+  // to randomize the options to be displayed on question card
   let randomIndex = Math.floor(Math.random() * 2);
   let firstOption = props.wrongAnswer,
     secondOption = props.rightAnswer;
