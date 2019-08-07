@@ -8,10 +8,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import reducer from '../src/store/reducer';
 
+// creating redux store
 const store = createStore(reducer);
 
 const app = (
   <Provider store={store}>
+    {/* enabling the routing in the app */}
     <BrowserRouter>
       <App />
     </BrowserRouter>

@@ -1,5 +1,6 @@
 import * as actionTypes from './actions';
 
+// initialState for redux store
 const initialState = {
   questions: [],
   error: false,
@@ -11,20 +12,24 @@ const initialState = {
   radioBtn: null,
 };
 
+// Redux Reducer with action handlers
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SET_QUESTIONS:
+      // store the fetched questions into store
       return {
         ...state,
         questions: action.questions,
         error: false,
       };
     case actionTypes.FETCH_QUESTIONS_FAILED:
+      // fetching of data from server failed
       return {
         ...state,
         error: true,
       };
     case actionTypes.NAVIGATE_NEXT_QUESTION:
+      // onclick of next button
       state.radioBtn.checked = false;
       disableRadioButtons(false);
       return {
@@ -34,6 +39,7 @@ const reducer = (state = initialState, action) => {
         radioBtn: null,
       };
     case actionTypes.VALIDATE_SELECTED_OPTION:
+      //Validate the selected option by the user
       disableRadioButtons(true);
       let isCorrect =
         action.event.target.value ===
@@ -71,6 +77,7 @@ const reducer = (state = initialState, action) => {
 };
 export default reducer;
 
+// enable or disable the radio buttons
 function disableRadioButtons(disable) {
   let radioBtnsList = document.getElementsByName('radioButtons');
   radioBtnsList[0].disabled = disable;

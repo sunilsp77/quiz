@@ -10,10 +10,12 @@ class App extends Component {
   render() {
     return (
       <div>
+        {/* An AppBar showing title of app */}
         <AppBar color="primary" position="static" align="center">
           <h1>Do you Know?</h1>
         </AppBar>
         <Switch>
+          {/* Routes for different paths */}
           <Route path="/end" exact component={EndScreen} />
           <Route path="/start-quiz" exact component={Questions} />
           <Route path="/" exact component={WelcomeScreen} />
