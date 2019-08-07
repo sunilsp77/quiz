@@ -23,7 +23,7 @@ const question = props => {
         value={firstOption}
         onChange={props.checkAnswer}
       />
-      <label for="10" className={classes.label}>
+      <label htmlFor="10" className={classes.label}>
         {firstOption}
       </label>
       <br />
@@ -36,7 +36,7 @@ const question = props => {
         value={secondOption}
         onChange={props.checkAnswer}
       />
-      <label for="11" className={classes.label}>
+      <label htmlFor="11" className={classes.label}>
         {secondOption}
       </label>
       <br />

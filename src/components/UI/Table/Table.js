@@ -16,6 +16,12 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
   },
+  tablecellheader: {
+    fontSize: '140%',
+  },
+  tablecelldata: {
+    fontSize: '125%',
+  },
 }));
 
 function createData(question, value) {
@@ -33,17 +39,25 @@ export default function SimpleTable(props) {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Questions</TableCell>
-            <TableCell align="left">Correct/Incorrect</TableCell>
+            <TableCell className={classes.tablecellheader}>Questions</TableCell>
+            <TableCell className={classes.tablecellheader} align="left">
+              Correct/Incorrect
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {rows.map(row => (
             <TableRow key={row.question}>
-              <TableCell component="th" scope="row">
+              <TableCell
+                className={classes.tablecelldata}
+                component="th"
+                scope="row"
+              >
                 {row.question}
               </TableCell>
-              <TableCell align="left">{row.value}</TableCell>
+              <TableCell className={classes.tablecelldata} align="left">
+                {row.value}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
