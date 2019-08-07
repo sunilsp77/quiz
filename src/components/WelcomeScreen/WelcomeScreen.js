@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     fontSize: 20,
     textAlign: 'center',
   },
+  actionArea: {
+    cursor: 'unset',
+  },
   link: {
     display: 'inline-block',
     width: 115,
@@ -42,7 +45,7 @@ export default function MediaCard() {
 
   return (
     <Card className={classes.card}>
-      <CardActionArea>
+      <CardActionArea className={classes.actionArea}>
         <CardMedia className={classes.media}>
           <h1>Welcome to Quiz</h1>
         </CardMedia>
